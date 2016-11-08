@@ -11,7 +11,7 @@
     <meta http-equiv="Cache-Control" content="no-cache"> 
     <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
     
-    <title>Group 2: Home</title>
+    <title>Group 2: User</title>
     
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
      <link href="static/css/style.css" rel="stylesheet">
@@ -41,12 +41,25 @@
 		</div>
 	</div>
 	
-	<div class="container" id="homeDiv">
-		<div class="jumbotron text-center">
-			<h3>Welcome to Office Phones and Phone Users Manager</h3>
+	<div>
+		<div class="col-sm-3"></div>
+		<div class="container col-sm-6" style="text-align:center">
+			<form>
+				User ID: <input type="text" name="userId" /><br/><br/>
+				First Name: <input type="text" name="firstName" /><br/><br/>
+				Last Name: <input type="text" name="lastName" /><br/><br/>
+				Title/MI: <input type="text" name="title" /><br/><br/>
+				<b>Address:</b><br/><br/>
+				Street: <input type="text" name="street" /><br/><br/>
+				City: <input type="text" name="city" /><br/><br/>
+				State: <input type="text" name="state"/><br/><br/>
+				Zip: <input type="text" name="zip" /><br/><br/>
+				<b>Phone Numbers Assigned:</b><br/><br/>
+				Phone: <input type="text" name="phone" /><br/><br/>
+			</form>
 		</div>
+		<div class="col-sm-3"></div>
 	</div>
-	
 	<script src="static/js/jquery-1.11.1.min.js"></script>    
     <script src="static/js/bootstrap.min.js"></script>
 	
