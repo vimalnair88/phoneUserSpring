@@ -2,14 +2,11 @@ package bootsample.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import bootsample.model.Address;
-import bootsample.model.Phone;
+import com.fasterxml.jackson.databind.util.JSONWrappedObject;
+
 import bootsample.model.User;
 import bootsample.service.AddressService;
 import bootsample.service.PhoneService;
@@ -49,12 +47,20 @@ public class SampleRestController {
 */	
 	@GetMapping("/user/{userId}")
 	public @ResponseBody  ModelAndView getUserJson(HttpServletRequest request, @PathVariable(value="userId") int id,
-			@RequestParam(value="json",required=false) String json){
+			@RequestParam(value="json",required=false) String json){		
 		User user = userService.getUser(id);
+		if(!(json==null)){
+			ModelMap model = new ModelMap();
+			model.addAttribute("user", user);
+			model.addAttribute("phones", user.getPhones());
+			ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView(), model) ;
+			return modelAndView;
+		}else{
 		ModelMap model = new ModelMap();
 		model.addAttribute("user", user);
 		model.addAttribute("phones", user.getPhones());
 		return new ModelAndView("getUser", model);
+		}
 	}
 	
 	
