@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +47,18 @@ public class SampleRestController {
 	}
 */	
 	@GetMapping("/user/{userId}")
-	public @ResponseBody  ModelAndView getUserJson(HttpServletRequest request, @PathVariable(value="userId") int id,
+	public @ResponseBody  ModelAndView getUserJson(HttpServletRequest request,HttpServletResponse response,@PathVariable(value="userId") int id,
 			@RequestParam(value="json",required=false) String json){		
 		User user = userService.getUser(id);
+		if(user==null){
+			response.setStatus(404);			
+			ModelMap model = new ModelMap();
+			String message = "No User found for userId:"+id;
+			model.addAttribute("error",message);
+			ModelAndView modelAndView = new ModelAndView("notFound",model);
+			return modelAndView;
+		}
+		else{
 		if(!(json==null)){
 			ModelMap model = new ModelMap();
 			model.addAttribute("user", user);
@@ -60,6 +70,7 @@ public class SampleRestController {
 		model.addAttribute("user", user);
 		model.addAttribute("phones", user.getPhones());
 		return new ModelAndView("getUser", model);
+		}
 		}
 	}
 	
