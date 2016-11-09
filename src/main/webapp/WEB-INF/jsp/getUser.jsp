@@ -2,7 +2,8 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ page import = "bootsample.model.Phone" %>
+<%@ page import = "org.springframework.ui.ModelMap"%>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -13,8 +14,9 @@
     
     <title>Group 2: User</title>
     
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-     <link href="static/css/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <!--[if lt IE 9]>
 		<script src="static/js/html5shiv.min.js"></script>
@@ -22,45 +24,45 @@
 	<![endif]-->
 </head>
 <body>
-
 	<div role="navigation">
 		<div class="navbar navbar-default" style="background-color:#42f48f">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/" style="color:black">Home</a></li>
-					<li><a href="/user" style="color:black">Create User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Update User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Delete User</a></li>
+					<li><a href="/user/userId" style="color:black">Create User</a></li>
+					<li><a href="/user/userId" style="color:black">Get User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
 					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Update Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Delete Phone</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
 	<div>
+	<%int i=0; %>
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
-			<form>
-				User ID: <input type="text" name="userId" /><br/><br/>
-				First Name: <input type="text" name="firstName" /><br/><br/>
-				Last Name: <input type="text" name="lastName" /><br/><br/>
-				Title/MI: <input type="text" name="title" /><br/><br/>
+			<form method="post" action="${user.getId()}">
+				<b>User Details</b><br/>
+				User Id: <input type="text" name="userId" value="${user.getId()}" readonly /><br/><br/>
+				First Name: <input type="text" name="firstName" value="${user.getFirstname()}"/><br/><br/>
+				Last Name: <input type="text" name="lastName" value="${user.getLastname()}"/><br/><br/>
+				Title/MI: <input type="text" name="title" value="${user.getTitle()}"/><br/><br/>
 				<b>Address:</b><br/><br/>
-				Street: <input type="text" name="street" /><br/><br/>
-				City: <input type="text" name="city" /><br/><br/>
-				State: <input type="text" name="state"/><br/><br/>
-				Zip: <input type="text" name="zip" /><br/><br/>
+				Street: <input type="text" name="street" value="${user.getAddress().getStreet()}"/><br/><br/>
+				City: <input type="text" name="city" value="${user.getAddress().getCity()}"/><br/><br/>
+				State: <input type="text" name="state" value="${user.getAddress().getState()}"/><br/><br/>
+				Zip: <input type="text" name="zip" value="${user.getAddress().getZip()}"/><br/><br/>
 				<b>Phone Numbers Assigned:</b><br/><br/>
-				Phone: <input type="text" name="phone" /><br/><br/>
+				<c:forEach items="${phones}" var="phone">
+				<%i++;%>
+				Phone <%=i%>: <input type="text" name="phone" value="<c:out value="${phone.getPhoneNumber()}"/>" readonly/><br/>
+				Description <%=i%>: <input type="text" name="desc" value="<c:out value="${phone.getDesc()}"/>" readonly/><br/>
+				</c:forEach>
+				<input type="submit" value="Update"/>
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
-	<script src="static/js/jquery-1.11.1.min.js"></script>    
-    <script src="static/js/bootstrap.min.js"></script>
 	
 </body>

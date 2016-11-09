@@ -31,12 +31,8 @@
 					<li><a href="/" style="color:black">Home</a></li>
 					<li><a href="/user/userId" style="color:black">Create User</a></li>
 					<li><a href="/user/userId" style="color:black">Get User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Update User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Delete User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
 					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Update Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Delete Phone</a></li>
 				</ul>
 			</div>
 		</div>

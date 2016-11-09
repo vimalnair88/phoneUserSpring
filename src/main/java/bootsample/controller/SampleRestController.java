@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import bootsample.model.Address;
 import bootsample.model.Phone;
@@ -45,9 +48,13 @@ public class SampleRestController {
 	}
 */	
 	@GetMapping("/user/{userId}")
-	public @ResponseBody  User getUserJson(@PathVariable(value="userId") int id,
+	public @ResponseBody  ModelAndView getUserJson(HttpServletRequest request, @PathVariable(value="userId") int id,
 			@RequestParam(value="json",required=false) String json){
-		return userService.getUser(id);
+		User user = userService.getUser(id);
+		ModelMap model = new ModelMap();
+		model.addAttribute("user", user);
+		model.addAttribute("phones", user.getPhones());
+		return new ModelAndView("getUser", model);
 	}
 	
 	
@@ -85,7 +92,7 @@ public class SampleRestController {
 	 */
 	
 	@PostMapping("/user/{userId}")
-	public @ResponseBody String updateUser( @PathVariable(value="userId",required=true) int id,
+	public @ResponseBody void updateUser(HttpServletRequest request, HttpServletResponse response, @PathVariable(value="userId",required=true) int id,
 			@RequestParam(value="fname",required=false) String fname,
 			@RequestParam(value="lname",required=false) String lname,
 			@RequestParam(value="title",required=false) String title,
@@ -93,10 +100,10 @@ public class SampleRestController {
 			@RequestParam(value="city",required=false) String city,
 			@RequestParam(value="state",required=false) String state,
 			@RequestParam(value="zip",required=false) String zip
-			)
+			) throws IOException
 	{
 		userService.updateUser(id,fname,lname,title,street,city,state,zip);
-		return "Task Saved";
+		response.sendRedirect("/user/"+id);
 	}
 	/*
 	 * Delete an User
