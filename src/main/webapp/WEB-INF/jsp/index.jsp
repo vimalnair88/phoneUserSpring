@@ -13,8 +13,9 @@
     
     <title>Group 2: Home</title>
     
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-     <link href="static/css/style.css" rel="stylesheet">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <!--[if lt IE 9]>
 		<script src="static/js/html5shiv.min.js"></script>
@@ -22,14 +23,14 @@
 	<![endif]-->
 </head>
 <body>
-
+	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	<div role="navigation">
 		<div class="navbar navbar-default" style="background-color:#42f48f">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/" style="color:black">Home</a></li>
-					<li><a href="/user" style="color:black">Create User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
+					<li><a href="/user/userId" style="color:black">Create User</a></li>
+					<li><a href="/user/userId" style="color:black">Get User</a></li>
 					<li><a href="/user/getUserId" style="color:black">Update User</a></li>
 					<li><a href="/user/getUserId" style="color:black">Delete User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
@@ -46,8 +47,5 @@
 			<h3>Welcome to Office Phones and Phone Users Manager</h3>
 		</div>
 	</div>
-	
-	<script src="static/js/jquery-1.11.1.min.js"></script>    
-    <script src="static/js/bootstrap.min.js"></script>
 	
 </body>

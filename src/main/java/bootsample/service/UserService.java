@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bootsample.dao.TaskRepository;
+
 import bootsample.dao.UserRepository;
 import bootsample.model.Address;
 import bootsample.model.Phone;
@@ -33,7 +33,7 @@ public class UserService {
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-	public void createUser(String fname,String lname, String title,String street,
+	public User createUser(String fname,String lname, String title,String street,
 			String city,String state,long zip,String no1,String desc1,String no2,
 			String desc2,String no3,String desc3)
 	{	
@@ -65,7 +65,8 @@ public class UserService {
 		}
 		userRepository.save(user);		
 		user.setPhones(phones);
-		userRepository.save(user);	
+		userRepository.save(user);
+		return user;
 	}
 	
 	public List<User> findAll(){

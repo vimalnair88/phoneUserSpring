@@ -37,7 +37,7 @@ public class PhoneRESTController {
 	
 	@GetMapping("/phone/{phoneId}")
 	public @ResponseBody Phone findOnePhone(@PathVariable(value="phoneId") int id,
-			@RequestParam(value="json",required=true) String json)
+			@RequestParam(value="json",required=false) String json)
 	{
 		return phoneservice.findOne(id);	
 	}

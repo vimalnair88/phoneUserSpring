@@ -24,6 +24,7 @@ public class Phone implements Serializable {
 	private long phoneNumber;
 	@Column(name="description")
 	private String desc;
+	@JsonIgnore
 	@ManyToMany(targetEntity=User.class)
 	private Set users;
 	@OneToOne
@@ -55,9 +56,11 @@ public class Phone implements Serializable {
 	public void setUsers(Set users) {
 		this.users = users;
 	}
+	@JsonIgnore
 	public Address getAddress() {
 		return address;
 	}
+	@JsonProperty
 	public void setAddress(Address address) {
 		this.address = address;
 	}

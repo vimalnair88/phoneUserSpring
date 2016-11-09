@@ -1,7 +1,12 @@
 package bootsample.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,14 +22,10 @@ import bootsample.model.Phone;
 import bootsample.model.User;
 import bootsample.service.AddressService;
 import bootsample.service.PhoneService;
-import bootsample.service.TaskService;
 import bootsample.service.UserService;
 
 @RestController
 public class SampleRestController {
-	
-	@Autowired
-	private TaskService taskService;
 	
 	@Autowired
 	private UserService userService;
@@ -38,6 +39,11 @@ public class SampleRestController {
 	/*
 	 * Get User as HTML(Handles JSON also)
 	 */
+/*	@GetMapping("/user/userId")
+	public String createUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		return "createUser";
+	}
+*/	
 	@GetMapping("/user/{userId}")
 	public @ResponseBody  User getUserJson(@PathVariable(value="userId") int id,
 			@RequestParam(value="json",required=false) String json){
@@ -53,7 +59,7 @@ public class SampleRestController {
 	 * Create an User
 	 */
 	
-	@PostMapping("/user/userId")
+/*	@PostMapping("/user/userId")
 	public @ResponseBody String createUser(@RequestParam(value="fname",required=true) String fname,
 			@RequestParam(value="lname",required=true) String lname,
 			@RequestParam(value="title",required=true) String title,
@@ -69,9 +75,10 @@ public class SampleRestController {
 			@RequestParam(value="desc3",required=false) String desc3
 			)
 	{
-		userService.createUser(fname,lname,title,street,city,state,zip,no1,desc1,no2,desc2,no3,desc3);
-		return "Task Saved";
-	}
+		User user = userService.createUser(fname,lname,title,street,city,state,zip,no1,desc1,no2,desc2,no3,desc3);
+		//return "Task Saved";
+		return "redirect:/user/" + user.getId();
+	}*/
 	
 	/*
 	 *Update an user 

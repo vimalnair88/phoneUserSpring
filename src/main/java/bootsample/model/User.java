@@ -31,7 +31,6 @@ public class User implements Serializable {
 	private String lastname;
 	@Column(name="title")
 	private String title;
-	@JsonIgnore
 	@ManyToMany(targetEntity=Phone.class)
 	@JoinTable(name="phone_users", joinColumns={@JoinColumn(name="users_id", referencedColumnName="id")},
 	inverseJoinColumns={@JoinColumn(name="phone_phone_id", referencedColumnName="phone_id")})
@@ -40,6 +39,14 @@ public class User implements Serializable {
 	@OneToOne
 	private Address address;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public User(){
 	}
 	
@@ -75,11 +82,11 @@ public class User implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	@JsonIgnore
+
 	public Set getPhones() {
 		return phones;
 	}
-	@JsonProperty
+
 	public void setPhones(Set phones) {
 		this.phones = phones;
 	}
