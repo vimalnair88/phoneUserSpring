@@ -33,6 +33,20 @@ public class UserService {
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
+	public void addUsertoPhone(int user_id,int phone_id){
+		
+		User user = userRepository.findOne(user_id);
+		Phone phone = phoneService.getPhone(phone_id);
+		user.getPhones().add(phone);
+		userRepository.save(user);
+	}
+	public void removeUsertoPhone(int user_id,int phone_id){
+		User user = userRepository.findOne(user_id);
+		Phone phone = phoneService.getPhone(phone_id);
+		user.getPhones().remove(phone);
+		userRepository.save(user);
+	}
+	
 	public User createUser(String fname,String lname, String title,String street,
 			String city,String state,long zip,String no1,String desc1,String no2,
 			String desc2,String no3,String desc3)

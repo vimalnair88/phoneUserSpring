@@ -139,6 +139,18 @@ public class PhoneRESTController {
 			return new ModelAndView("notFound",model);
 		}		
 	}
+	@PostMapping("phone/addUser")
+	public void addUsertoPhone(HttpServletResponse response,@RequestParam(value="id",required=true) int id,
+	@RequestParam(value="phone_id",required=true) int phone_id) throws IOException{
+		userService.addUsertoPhone(id, phone_id);
+		response.sendRedirect("/phone/" +phone_id );
+	}
+	@PostMapping("phone/deleteUser")
+	public void removeUsertoPhone(HttpServletResponse response,@RequestParam(value="id",required=true) int id,
+	@RequestParam(value="phone_id",required=true) int phone_id) throws IOException{
+		userService.removeUsertoPhone(id, phone_id);
+		response.sendRedirect("/phone/" +phone_id );
+	}
 		
 	@PostMapping("/user/{userID}/assignPhone")
 	public @ResponseBody User findOne(@PathVariable(value="userID") int id,
