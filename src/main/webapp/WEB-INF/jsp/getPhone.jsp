@@ -21,10 +21,28 @@
 		<script src="static/js/html5shiv.min.js"></script>
 		<script src="static/js/respond.min.js"></script>
 	<![endif]-->
+	<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 </head>
 <body>
 
-	<div role="navigation">
+	<div class="row" role="navigation">
 		<div class="navbar navbar-default" style="background-color:#42f48f">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -38,7 +56,7 @@
 		</div>
 	</div>
 	
-	<div>
+	<div class="row">
 		<%int i=0; %>
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
@@ -51,17 +69,56 @@
 				City: <input type="text" name="city" value="${address.getCity()}"/><br/><br/>
 				State: <input type="text" name="state" value="${address.getState()}"/><br/><br/>
 				Zip: <input type="text" name="zip" value="${address.getZip()}"/><br/><br/>
-				<b>Assigned Users:</b><br/><br/>
-				<c:forEach items="${user}" var="usr">
-					<%i++;%>
-					First Name <%=i%>: <input type="text" name="firstName" value="<c:out value="${usr.getFirstname()}"/>"/><br/><br/>
-					Last Name <%=i%>: <input type="text" name="lastName" value="<c:out value="${usr.getLastname()}"/>" /><br/><br/>
-					User Id <%=i%>: <input type="number" name="userId" value="<c:out value="${usr.getId()}"/>" /><br/><br/>
-				</c:forEach>
-				<input type="submit" value="Update" />
+				<input type="submit" value="Update" /> <br/><br/>
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
-	
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			<b>Assigned Users to this Phone:</b><br/><br/>
+			<table>
+			  <tr>
+			  	<th>User ID</th>
+			    <th>First Name</th>
+			    <th>Last Name</th>
+			    <th>Operation</th>
+			  </tr>
+			  <c:forEach items="${user}" var="usr">
+			  <tr>
+			    <td>${usr.getId()}</td>
+			    <td>${usr.getFirstname()}</td>
+			    <td>${usr.getLastname()}</td>
+			    <td> <button>Remove</button></td>
+			  </tr>
+			  </c:forEach> 
+			</table>
+			<br/>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			<br/>
+			<b>Unassigned Users to this Phone:</b><br/><br/>
+			<table>
+			  <tr>
+			   <th>User ID</th>
+			    <th>First Name</th>
+			    <th>Last Name</th>
+			     <th>Operation</th>
+			  </tr>
+			<c:forEach items="${NotAssigned}" var="usr">
+			  <tr>
+			    <td>${usr.getId()}</td>
+			    <td>${usr.getFirstname()}</td>
+			    <td>${usr.getLastname()}</td>
+			    <td> <button>Add</button></td>
+			  </tr>
+			</c:forEach>
+  			</table>
+		<div class="col-sm-2"></div>
+	</div>	
 </body>
