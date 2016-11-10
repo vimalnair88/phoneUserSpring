@@ -59,7 +59,10 @@
 				Phone <%=i%>: <input type="text" name="phone" value="<c:out value="${phone.getPhoneNumber()}"/>" readonly/><br/><br/>
 				Description <%=i%>: <input type="text" name="desc" value="<c:out value="${phone.getDesc()}"/>" readonly/><br/><br/>
 				</c:forEach>
-				<input type="submit" value="Update"/>
+				<input class="btn btn-primary" type="submit" value="Update"/><br/><br/>
+			</form>
+			<form method="post" action="/user/delete/${user.getId()}">
+				<input class="btn btn-primary" type="submit" value="Delete"/><br/>
 			</form>
 		</div>
 		<div class="col-sm-3"></div>

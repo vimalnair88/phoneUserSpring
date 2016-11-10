@@ -77,7 +77,7 @@
 					<option value="Office">Office</option>
 				</select>
 				<br/><br/>
-				<input type="submit" value="Create" /><br/>
+				<input class="btn btn-primary" type="submit" value="Create" /><br/>
 			</form>
 		</div>
 		<div class="col-sm-3"></div>

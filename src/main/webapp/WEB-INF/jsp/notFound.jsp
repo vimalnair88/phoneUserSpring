@@ -40,7 +40,7 @@
 	
 	<div class="container" id="homeDiv">
 		<div class="jumbotron text-center">
-			<h2>404 Not Found ${error }</h2>
+			<h2>404 Not Found ${error}</h2>
 			
 		</div>
 	</div>

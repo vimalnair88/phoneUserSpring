@@ -45,14 +45,14 @@
 				<form method="post" action="/user/getUserId">
 					Please enter the ID of the User:<br/>
 					<input type="number" name="userId"/><br/><br/>
-					<input type="submit" value="Get User" />
+					<input class="btn btn-primary" type="submit" value="Get User" />
 				</form>
 			</c:if>
 			<c:if test="${phone}">
 				<form method="post" action="/phone/getPhoneId">
 					Please enter the ID of the Phone:<br/>
 					<input type="number" name="userId"/><br/><br/>
-					<input type="submit" value="Get Phone" />
+					<input class="btn btn-primary" type="submit" value="Get Phone" />
 				</form>
 			</c:if>
 		</div>

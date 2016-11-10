@@ -120,17 +120,21 @@ public class PhoneRESTController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Users Exist, Delete UnSuccessfull!");
 		}		
 	}
+	
 	@PostMapping("/phone/delete/{phoneId}")
-	public ModelAndView deletePostPhone(@PathVariable(value="phoneId") int phoneId)
+	public ModelAndView deletePostPhone(HttpServletResponse response, @PathVariable(value="phoneId") int phoneId)
 	{
 		String status = phoneservice.deletePhone(phoneId);
 		ModelMap model = new ModelMap();
+		String message;
 		if(status.equals("Delete Successfull")){
-			model.addAttribute("message","Delete Successfull");
+			message = "Delete Successfull";
+			model.addAttribute("error",message);
 			ResponseEntity.ok("Delete Successfull");			
 			return new ModelAndView("createPhone",model);
 		}else{
-			model.addAttribute("message","Users Exist, Delete UnSuccessfull!");
+			message = "Users Exit, Delete Unsuccessfull!";
+			model.addAttribute("error",message);
 			ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Users Exist, Delete UnSuccessfull!");
 			return new ModelAndView("notFound",model);
 		}		

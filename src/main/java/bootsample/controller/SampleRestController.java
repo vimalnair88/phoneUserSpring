@@ -40,12 +40,7 @@ public class SampleRestController {
 
 	/*
 	 * Get User as HTML(Handles JSON also)
-	 */
-/*	@GetMapping("/user/userId")
-	public String createUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		return "createUser";
-	}
-*/	
+	 */	
 	@GetMapping("/user/{userId}")
 	public @ResponseBody  ModelAndView getUserJson(HttpServletRequest request,HttpServletResponse response,@PathVariable(value="userId") int id,
 			@RequestParam(value="json",required=false) String json){		
@@ -107,12 +102,13 @@ public class SampleRestController {
 		userService.delete(id);
 		return "Delete Successful";
 	}
+	
 	@PostMapping("/user/delete/{userID}")
-	public ModelAndView deletePostUser(@PathVariable(value="userID") int id ){		
-		ModelMap model = new ModelMap();
-		String str = "User Deleted!";
-		model.addAttribute("message",str);
+	public void deletePostUser(HttpServletResponse response, @PathVariable(value="userID") int id ) throws IOException{		
+		System.out.println("Entered");
+		//ModelMap model = new ModelMap();
 		userService.delete(id);
-		return new ModelAndView("createPhone",model);
+		response.sendRedirect("/user/userId");
+		//return new ModelAndView("createPhone",model);
 	}
 }

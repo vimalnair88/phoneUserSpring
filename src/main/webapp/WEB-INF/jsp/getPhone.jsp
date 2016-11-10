@@ -57,11 +57,10 @@ th {
 	</div>
 	
 	<div class="row">
-		<%int i=0; %>
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
 			<form method="post" action="${phone.getPhone_id()}">
-				Phone ID: <input type="number" name="id" value="${phone.getPhone_id()}"/><br/><br/>
+				Phone ID: <input type="number" name="id" value="${phone.getPhone_id()}" readonly/><br/><br/>
 				Phone Number: <input type="text" name="phone" value="${phone.getPhoneNumber()}"/><br/><br/>
 				Description: <input type="text" name="desc" value="${phone.getDesc()}" /><br/><br/>
 				<b>Address:</b><br/><br/>
@@ -69,7 +68,10 @@ th {
 				City: <input type="text" name="city" value="${address.getCity()}"/><br/><br/>
 				State: <input type="text" name="state" value="${address.getState()}"/><br/><br/>
 				Zip: <input type="text" name="zip" value="${address.getZip()}"/><br/><br/>
-				<input type="submit" value="Update" /> <br/><br/>
+				<input class="btn btn-primary" type="submit" value="Update" /> <br/><br/>
+			</form>
+			<form method="post" action="/phone/delete/${phone.getPhone_id()}">
+				<input class="btn btn-primary" type="submit" value="Delete"/><br/>
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
@@ -105,10 +107,10 @@ th {
 			<b>Unassigned Users to this Phone:</b><br/><br/>
 			<table>
 			  <tr>
-			   <th>User ID</th>
+			  	<th>User ID</th>
 			    <th>First Name</th>
 			    <th>Last Name</th>
-			     <th>Operation</th>
+			    <th>Operation</th>
 			  </tr>
 			<c:forEach items="${NotAssigned}" var="usr">
 			  <tr>

@@ -58,7 +58,7 @@
 				First Name: <input type="text" name="firstName"/><br/><br/>
 				Last Name: <input type="text" name="lastName"/><br/><br/>
 				User Id: <input type="number" name="userId" required/><br/><br/>
-				<input type="submit" value="Create" />
+				<input class="btn btn-primary" type="submit" value="Create" />
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
