@@ -30,7 +30,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/" style="color:black">Home</a></li>
 					<li><a href="/user/userId" style="color:black">Create User</a></li>
-					<li><a href="/user/userId" style="color:black">Get User</a></li>
+					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
 					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
 				</ul>
@@ -56,8 +56,8 @@
 				<b>Phone Numbers Assigned:</b><br/><br/>
 				<c:forEach items="${phones}" var="phone">
 				<%i++;%>
-				Phone <%=i%>: <input type="text" name="phone" value="<c:out value="${phone.getPhoneNumber()}"/>" readonly/><br/>
-				Description <%=i%>: <input type="text" name="desc" value="<c:out value="${phone.getDesc()}"/>" readonly/><br/>
+				Phone <%=i%>: <input type="text" name="phone" value="<c:out value="${phone.getPhoneNumber()}"/>" readonly/><br/><br/>
+				Description <%=i%>: <input type="text" name="desc" value="<c:out value="${phone.getDesc()}"/>" readonly/><br/><br/>
 				</c:forEach>
 				<input type="submit" value="Update"/>
 			</form>

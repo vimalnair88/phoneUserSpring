@@ -50,14 +50,14 @@ public class UserService {
 		
 		// If Second Number Exists
 		
-		if(!(no2==null)){
+		if(!(no2.isEmpty())){
 			long phoneNumber2 = Long.parseLong(no2); 
 			Phone phone2 = new Phone(phoneNumber2,desc2,address);
 			phoneService.save(phone2);
 			phones.add(phone2);
 		}
 		// If Third Number Exists
-		if(!(no3==null)){
+		if(!(no3.isEmpty())){
 			long phoneNumber3 = Long.parseLong(no3); 
 			Phone phone3 = new Phone(phoneNumber3,desc3,address);
 			phoneService.save(phone3);

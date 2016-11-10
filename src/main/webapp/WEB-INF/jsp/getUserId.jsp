@@ -30,7 +30,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/" style="color:black">Home</a></li>
 					<li><a href="/user/userId" style="color:black">Create User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
+					<li><a href="/user/userId" style="color:black">Get User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
 					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
 				</ul>
@@ -38,10 +38,16 @@
 		</div>
 	</div>
 	
-	<div class="container" id="homeDiv">
-		<div class="jumbotron text-center">
-			<h3>Welcome to Office Phones and Phone Users Manager</h3>
+	<div>
+		<div class="col-sm-3"></div>
+		<div class="container col-sm-6" style="text-align:center">
+			<form method="post" action="/user/getUserId">
+				Please enter the User ID of the User:<br/>
+				<input type="number" name="userId"/><br/><br/>
+				<input type="submit" value="Get User" />
+			</form>
 		</div>
+		<div class="col-sm-3"></div>
 	</div>
 	
 </body>

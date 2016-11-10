@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import bootsample.model.User;
 import bootsample.service.UserService;
@@ -37,8 +38,23 @@ public class MainController {
 		return "createUser";
 	}
 	
+	@GetMapping("/user/getUserId")
+	public @ResponseBody ModelAndView getUserId(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		return new ModelAndView("getUserId");
+	}
+	
+	@PostMapping("/user/getUserId")
+	public @ResponseBody void postUserId(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String ids = (String)request.getParameter("userId");
+		int id = Integer.parseInt(ids);
+		response.sendRedirect("/user/"+id);
+	}
+	
+	/*
+	 * Create an User
+	 */
 	@PostMapping("/user/userId")
-	public @ResponseBody String createUser(@RequestParam(value="fname",required=true) String fname,
+	public @ResponseBody void createUser(HttpServletResponse response, @RequestParam(value="fname",required=true) String fname,
 			@RequestParam(value="lname",required=true) String lname,
 			@RequestParam(value="title",required=true) String title,
 			@RequestParam(value="street",required=true) String street,
@@ -51,48 +67,11 @@ public class MainController {
 			@RequestParam(value="desc2",required=false) String desc2,
 			@RequestParam(value="phoneno3",required=false) String no3,
 			@RequestParam(value="desc3",required=false) String desc3
-			)
+			) throws IOException
 	{
 		User user = userService.createUser(fname,lname,title,street,city,state,zip,no1,desc1,no2,desc2,no3,desc3);
 		//return "Task Saved";
-		return "redirect:/user/" + user.getId();
-	}
-/*	
-	@GetMapping("/all-tasks")
-	public String allTasks(HttpServletRequest request){
-		request.setAttribute("tasks", taskService.findAll());
-		request.setAttribute("mode", "MODE_TASKS");
-		return "index";
+		response.sendRedirect("/user/"+user.getId());
 	}
 	
-	@GetMapping("/new-task")
-	public String newTask(HttpServletRequest request){
-		request.setAttribute("mode", "MODE_NEW");
-		return "index";
-	}
-	
-	@PostMapping("/save-task")
-	public String saveTask(@ModelAttribute Task task, BindingResult bindingResult, HttpServletRequest request){
-		task.setDateCreated(new Date());
-		taskService.save(task);
-		request.setAttribute("tasks", taskService.findAll());
-		request.setAttribute("mode", "MODE_TASKS");
-		return "index";
-	}
-	
-	@GetMapping("/update-task")
-	public String updateTask(@RequestParam int id, HttpServletRequest request){
-		request.setAttribute("task", taskService.findTask(id));
-		request.setAttribute("mode", "MODE_UPDATE");
-		return "index";
-	}
-	
-	@GetMapping("/delete-task")
-	public String deleteTask(@RequestParam int id, HttpServletRequest request){
-		taskService.delete(id);
-		request.setAttribute("tasks", taskService.findAll());
-		request.setAttribute("mode", "MODE_TASKS");
-		return "index";
-	}
-*/	
 }

@@ -30,7 +30,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/" style="color:black">Home</a></li>
 					<li><a href="/user/userId" style="color:black">Create User</a></li>
-					<li><a href="/user/userId" style="color:black">Get User</a></li>
+					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
 					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
 				</ul>
@@ -42,22 +42,42 @@
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
 			<form method="post" action="/user/userId">
-				First Name: <input type="text" name="fname" /><br/><br/>
-				Last Name: <input type="text" name="lname" /><br/><br/>
-				Title/MI: <input type="text" name="title" /><br/><br/>
+				First Name: <input type="text" name="fname" pattern="{A-Za-z}{30}"/><br/><br/>
+				Last Name: <input type="text" name="lname" pattern="{A-Za-z}{30}" /><br/><br/>
+				Title/MI: <input type="text" name="title"  pattern="{A-Za-z}{4}"/><br/><br/>
 				<b>Address:</b><br/><br/>
 				Street: <input type="text" name="street" /><br/><br/>
-				City: <input type="text" name="city" /><br/><br/>
-				State: <input type="text" name="state"/><br/><br/>
-				Zip: <input type="text" name="zip" /><br/><br/>
+				City: <input type="text" name="city"  pattern="{A-Za-z}{30}"/><br/><br/>
+				State: <input type="text" name="state" pattern="{A-Za-z}{15}"/><br/><br/>
+				Zip: <input type="number" name="zip" pattern="{10}" /><br/><br/>
 				<b>Phone Numbers Assigned:</b><br/><br/>
-				Phone-1 : <input type="text" name="phoneno1" /><br/><br/>
-				Description-1 : <input type="text" name="desc1" /><br/><br/>
-				Phone-2 : <input type="text" name="phoneno2" /><br/><br/>
-				Description-2 : <input type="text" name="desc2" /><br/><br/>
-				Phone-3 : <input type="text" name="phoneno3" /><br/><br/>
-				Description-3 : <input type="text" name="desc3" /><br/><br/>
-				<input type="submit" value="Create" />
+				Phone-1 : <input type="number" name="phoneno1" pattern="{10}"/><br/><br/>
+				Description-1 : 
+				<select name="desc1">
+					<option value="Primary" selected>Primary</option>
+					<option value="Home">Home</option>
+					<option value="Office">Office</option>
+				</select>
+				<br/><br/>
+				Phone-2 : <input type="number" name="phoneno2" pattern="{10}" /><br/><br/>
+				Description-2 : 
+				<select name="desc2">
+					<option value="" selected></option>
+					<option value="Primary">Primary</option>
+					<option value="Home">Home</option>
+					<option value="Office">Office</option>
+				</select>
+				<br/><br/>
+				Phone-3 : <input type="number" name="phoneno3" pattern="{10}"/><br/><br/>
+				Description-3 : 
+				<select name="desc3">
+					<option value="" selected></option>
+					<option value="Primary">Primary</option>
+					<option value="Home">Home</option>
+					<option value="Office">Office</option>
+				</select>
+				<br/><br/>
+				<input type="submit" value="Create" /><br/>
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
