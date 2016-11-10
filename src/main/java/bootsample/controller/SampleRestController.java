@@ -107,4 +107,12 @@ public class SampleRestController {
 		userService.delete(id);
 		return "Delete Successful";
 	}
+	@PostMapping("/user/delete/{userID}")
+	public ModelAndView deletePostUser(@PathVariable(value="userID") int id ){		
+		ModelMap model = new ModelMap();
+		String str = "User Deleted!";
+		model.addAttribute("message",str);
+		userService.delete(id);
+		return new ModelAndView("createPhone",model);
+	}
 }

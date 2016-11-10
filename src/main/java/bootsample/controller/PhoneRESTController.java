@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 import bootsample.model.Phone;
 import bootsample.model.User;
 import bootsample.service.PhoneService;
