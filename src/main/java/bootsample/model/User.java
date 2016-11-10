@@ -82,11 +82,9 @@ public class User implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public Set getPhones() {
 		return phones;
 	}
-
 	public void setPhones(Set phones) {
 		this.phones = phones;
 	}

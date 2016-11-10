@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bootsample.dao.PhoneRepository;
+import bootsample.dao.UserRepository;
 import bootsample.model.Address;
 import bootsample.model.Phone;
 import bootsample.model.User;
@@ -25,7 +26,7 @@ public class PhoneService {
 	private AddressService addressService;
 	
 	private final PhoneRepository phoneRepository;
-	
+		
 	public PhoneService(PhoneRepository phoneRepository) {
 		this.phoneRepository = phoneRepository;
 	}
@@ -39,8 +40,9 @@ public class PhoneService {
 	public Phone findOne(int id){
 		return phoneRepository.findOne(id);
 	}
-	
-	
+	public List<Object> findUserbyPhoneNum(int id){
+		return phoneRepository.findUserPhoneNum(id);
+	}	
 	public String deletePhone(int phoneId){
 		
 		Phone phone = phoneRepository.findOne(phoneId);

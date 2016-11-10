@@ -69,6 +69,14 @@ public class UserService {
 		return user;
 	}
 	
+	public List<User> findUserbyPhone(int id){
+		return userRepository.findUserPhoneNum(id);
+	}
+	public List<User> findUserNotAssigned(int id){
+		return userRepository.findUserPhoneNotAssigned(id);
+	}
+	
+	
 	public List<User> findAll(){
 		List<User> user = new ArrayList<>();
 		List<User> user1=(List<User>)userRepository.findAll();

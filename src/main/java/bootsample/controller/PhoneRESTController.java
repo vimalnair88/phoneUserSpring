@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+<<<<<<< Updated upstream
+=======
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+>>>>>>> Stashed changes
 
 import bootsample.model.Phone;
 import bootsample.model.User;
@@ -40,10 +45,35 @@ public class PhoneRESTController {
 	 */
 	
 	@GetMapping("/phone/{phoneId}")
-	public @ResponseBody Phone findOnePhone(@PathVariable(value="phoneId") int id,
+	public ModelAndView findOnePhone(HttpServletResponse response,@PathVariable(value="phoneId") int id,
 			@RequestParam(value="json",required=false) String json)
 	{
-		return phoneservice.findOne(id);	
+		Phone phone = phoneservice.findOne(id);
+		if(phone==null){
+			response.setStatus(404);			
+			ModelMap model = new ModelMap();
+			String message = "No Phone found for PhoneId:"+id;
+			model.addAttribute("error",message);
+			ModelAndView modelAndView = new ModelAndView("notFound",model);
+			return modelAndView;
+		}else{
+			if(!(json==null)){
+				ModelMap model = new ModelMap();
+				model.addAttribute("phone", phone);
+				model.addAttribute("address", phone.getAddress());
+				model.addAttribute("user",userService.findUserbyPhone(id));
+				model.addAttribute("NotAssigned",userService.findUserNotAssigned(id));
+				ModelAndView modelAndView = new ModelAndView(new MappingJackson2JsonView(), model) ;
+				return modelAndView;
+			}else{
+			ModelMap model = new ModelMap();
+			model.addAttribute("phone", phone);
+			model.addAttribute("address", phone.getAddress());
+			model.addAttribute("user",userService.findUserbyPhone(id));
+			model.addAttribute("NotAssigned",userService.findUserNotAssigned(id));
+			return new ModelAndView("getUser", model);
+		}
+		}
 	}
 	/*
 	 * Creating a phone(Handles Assigns functionality also)
