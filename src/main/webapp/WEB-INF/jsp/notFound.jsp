@@ -1,13 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Group 2</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Pragma" content="no-cache"> 
+    <meta http-equiv="Cache-Control" content="no-cache"> 
+    <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
+    
+    <title>Group 2: Home</title>
+    
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!--[if lt IE 9]>
+		<script src="static/js/html5shiv.min.js"></script>
+		<script src="static/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
-<h1>404 Not Found</h1>
-<h2>No resource found for user ${user} </h2>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+	<div role="navigation">
+		<div class="navbar navbar-default" style="background-color:#42f48f">
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/" style="color:black">Home</a></li>
+					<li><a href="/user/userId" style="color:black">Create User</a></li>
+					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
+					<li><a href="phone" style="color:black">Create Phone</a></li>
+					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" id="homeDiv">
+		<div class="jumbotron text-center">
+			<h2>404 Not Found ${error }</h2>
+			
+		</div>
+	</div>
+	
 </body>
-</html>

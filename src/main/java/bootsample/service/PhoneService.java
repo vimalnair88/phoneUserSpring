@@ -51,7 +51,7 @@ public class PhoneService {
 			return "Delete UnSuccessfull";
 		}
 	}
-	public void savePhone(String phone,String desc,String street,String city,String state,long zip,String userId){
+	public Phone savePhone(String phone,String desc,String street,String city,String state,long zip,String userId){
 		
 	Address address = new Address(street,city,state,zip);
 	addressService.saveAddress(address);
@@ -69,6 +69,7 @@ public class PhoneService {
 	}
 	}
 	phoneRepository.save(newPhone);	
+	return newPhone;
 	}
 	public void updatePhone(int phoneId,String phone,String desc,String street,String city,String state,String zip,String userId){
 		

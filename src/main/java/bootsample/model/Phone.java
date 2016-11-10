@@ -29,6 +29,12 @@ public class Phone implements Serializable {
 	private Set users;
 	@OneToOne
 	private Address address;
+	public int getPhone_id() {
+		return phone_id;
+	}
+	public void setPhone_id(int phone_id) {
+		this.phone_id = phone_id;
+	}
 	public Phone(){
 		
 	}

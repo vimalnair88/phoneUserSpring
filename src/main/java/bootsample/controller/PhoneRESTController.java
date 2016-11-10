@@ -1,6 +1,9 @@
 package bootsample.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import bootsample.model.Phone;
 import bootsample.model.User;
@@ -28,8 +32,8 @@ public class PhoneRESTController {
 	
 	
 	@GetMapping("/phone")
-	public List<Phone> findAllPhone(){
-		return phoneservice.findAll();	
+	public ModelAndView createPhone(){
+		return new ModelAndView("createPhone");
 	}
 	/*
 	 * Get Details of Phone(Supports JSON as well)
@@ -45,16 +49,17 @@ public class PhoneRESTController {
 	 * Creating a phone(Handles Assigns functionality also)
 	 */
 	@PostMapping("/phone/phoneId")
-	public String savePhone(@RequestParam(value="phone",required=true) String phone,
+	public void savePhone(HttpServletResponse response, @RequestParam(value="phone",required=true) String phone,
 			@RequestParam(value="desc",required=true) String desc,
 			@RequestParam(value="street",required=true) String street,
 			@RequestParam(value="city",required=true) String city,
 			@RequestParam(value="state",required=true) String state,
 			@RequestParam(value="zip",required=true) long zip,
-			@RequestParam(value="userId",required=false) String userId)
+			@RequestParam(value="userId",required=false) String userId) throws IOException
 	{
-		phoneservice.savePhone(phone,desc,street,city,state,zip,userId);
-		return "Phone Saved";
+		Phone newPhone = phoneservice.savePhone(phone,desc,street,city,state,zip,userId);
+		//return "Phone Saved";
+		response.sendRedirect("/phone/" + newPhone.getPhone_id());
 	}
 	/*
 	 * Updating a phone(Handles assigning also)

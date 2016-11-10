@@ -30,12 +30,8 @@
 					<li><a href="/" style="color:black">Home</a></li>
 					<li><a href="/user" style="color:black">Create User</a></li>
 					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Update User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Delete User</a></li>
 					<li><a href="phone" style="color:black">Create Phone</a></li>
 					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Update Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Delete Phone</a></li>
 				</ul>
 			</div>
 		</div>
@@ -44,19 +40,19 @@
 	<div>
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
-			<form>
-				Phone Id: <input type="text" name="userId" /><br/><br/>
-				Phone Number: <input type="text" name="number" /><br/><br/>
-				Description: <input type="text" name="description" /><br/><br/>
+			<form method="post" action="/phone/phoneId">
+				Phone Number: <input type="text" name="phone" /><br/><br/>
+				Description: <input type="text" name="desc" /><br/><br/>
 				<b>Address:</b><br/><br/>
 				Street: <input type="text" name="street" /><br/><br/>
 				City: <input type="text" name="city" /><br/><br/>
 				State: <input type="text" name="state"/><br/><br/>
 				Zip: <input type="text" name="zip" /><br/><br/>
-				<b>Assigned Users</b><br/><br/>
-				First Name: <input type="text" name="firstName"/><br/>
-				Last Name: <input type="text" name="lastName"/><br/>
-				User Id: <input type="text" name="userId" /><br/><br/>
+				<b>Assign User:</b><br/><br/>
+				First Name: <input type="text" name="firstName"/><br/><br/>
+				Last Name: <input type="text" name="lastName"/><br/><br/>
+				User Id: <input type="number" name="userId" required/><br/><br/>
+				<input type="submit" value="Create" />
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
