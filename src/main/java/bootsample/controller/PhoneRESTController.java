@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 import bootsample.model.Phone;
 import bootsample.model.User;
 import bootsample.service.PhoneService;
@@ -125,8 +120,22 @@ public class PhoneRESTController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Users Exist, Delete UnSuccessfull!");
 		}		
 	}
-	
-	
+	@PostMapping("/phone/delete/{phoneId}")
+	public ModelAndView deletePostPhone(@PathVariable(value="phoneId") int phoneId)
+	{
+		String status = phoneservice.deletePhone(phoneId);
+		ModelMap model = new ModelMap();
+		if(status.equals("Delete Successfull")){
+			model.addAttribute("message","Delete Successfull");
+			ResponseEntity.ok("Delete Successfull");			
+			return new ModelAndView("createPhone",model);
+		}else{
+			model.addAttribute("message","Users Exist, Delete UnSuccessfull!");
+			ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Users Exist, Delete UnSuccessfull!");
+			return new ModelAndView("notFound",model);
+		}		
+	}
+		
 	@PostMapping("/user/{userID}/assignPhone")
 	public @ResponseBody User findOne(@PathVariable(value="userID") int id,
 			@RequestParam(value="phone_id",required=true) int phone_id){
