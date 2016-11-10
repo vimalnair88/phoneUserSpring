@@ -13,8 +13,9 @@
     
     <title>Group2: CreatePhone</title>
     
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-     <link href="static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <!--[if lt IE 9]>
 		<script src="static/js/html5shiv.min.js"></script>
@@ -57,13 +58,10 @@
 				<b>Assign User:</b><br/><br/>
 				First Name: <input type="text" name="firstName"/><br/><br/>
 				Last Name: <input type="text" name="lastName"/><br/><br/>
-				User Id: <input type="number" name="userId" required/><br/><br/>
+				User Id: <input type="number" name="userId"/><br/><br/>
 				<input class="btn btn-primary" type="submit" value="Create" />
 			</form>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
-	<script src="static/js/jquery-1.11.1.min.js"></script>    
-    <script src="static/js/bootstrap.min.js"></script>
-	
 </body>

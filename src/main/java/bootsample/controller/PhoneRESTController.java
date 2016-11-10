@@ -48,7 +48,7 @@ public class PhoneRESTController {
 		if(phone==null){
 			response.setStatus(404);			
 			ModelMap model = new ModelMap();
-			String message = "No Phone found for PhoneId:"+id;
+			String message = "Sorry, the requested phone with ID "+id+" does not exist";
 			model.addAttribute("error",message);
 			ModelAndView modelAndView = new ModelAndView("notFound",model);
 			return modelAndView;

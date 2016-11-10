@@ -48,7 +48,7 @@ public class SampleRestController {
 		if(user==null){
 			response.setStatus(404);			
 			ModelMap model = new ModelMap();
-			String message = "No User found for userId:"+id;
+			String message = "Sorry, the requested user with ID "+id+" does not exist";
 			model.addAttribute("error",message);
 			ModelAndView modelAndView = new ModelAndView("notFound",model);
 			return modelAndView;
@@ -105,7 +105,6 @@ public class SampleRestController {
 	
 	@PostMapping("/user/delete/{userID}")
 	public void deletePostUser(HttpServletResponse response, @PathVariable(value="userID") int id ) throws IOException{		
-		System.out.println("Entered");
 		//ModelMap model = new ModelMap();
 		userService.delete(id);
 		response.sendRedirect("/user/userId");

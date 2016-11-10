@@ -121,6 +121,7 @@ th {
 			  </tr>
 			</c:forEach>
   			</table>
+  		</div>	
 		<div class="col-sm-2"></div>
 	</div>	
 </body>
