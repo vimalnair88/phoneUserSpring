@@ -11,7 +11,7 @@
     <meta http-equiv="Cache-Control" content="no-cache"> 
     <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
     
-    <title>Group 2: User</title>
+    <title>Group2: CreatePhone</title>
     
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
      <link href="static/css/style.css" rel="stylesheet">
@@ -28,10 +28,10 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="/" style="color:black">Home</a></li>
-					<li><a href="/user" style="color:black">Create User</a></li>
+					<li><a href="/user/userId" style="color:black">Create User</a></li>
 					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
-					<li><a href="phone" style="color:black">Create Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
+					<li><a href="/phone" style="color:black">Create Phone</a></li>
+					<li><a href="/phone/getPhoneId" style="color:black">Get Phone</a></li>
 				</ul>
 			</div>
 		</div>
@@ -42,7 +42,13 @@
 		<div class="container col-sm-6" style="text-align:center">
 			<form method="post" action="/phone/phoneId">
 				Phone Number: <input type="text" name="phone" /><br/><br/>
-				Description: <input type="text" name="desc" /><br/><br/>
+				Description: 
+				<select name="desc">
+					<option value="Primary" selected>Primary</option>
+					<option value="Home">Home</option>
+					<option value="Office">Office</option>
+				</select>
+				<br/><br/>
 				<b>Address:</b><br/><br/>
 				Street: <input type="text" name="street" /><br/><br/>
 				City: <input type="text" name="city" /><br/><br/>

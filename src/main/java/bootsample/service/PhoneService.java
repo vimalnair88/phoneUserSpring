@@ -73,7 +73,7 @@ public class PhoneService {
 	phoneRepository.save(newPhone);	
 	return newPhone;
 	}
-	public void updatePhone(int phoneId,String phone,String desc,String street,String city,String state,String zip,String userId){
+	public Phone updatePhone(int phoneId,String phone,String desc,String street,String city,String state,String zip,String userId){
 		
 		Phone updatePhone = phoneRepository.findOne(phoneId);
 		if(!(phone==null)){
@@ -105,6 +105,7 @@ public class PhoneService {
 			}
 		}
 		phoneRepository.save(updatePhone);
+		return updatePhone;
 		
 }
 	public void save(Phone phone){

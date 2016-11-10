@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-<<<<<<< Updated upstream
-=======
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
->>>>>>> Stashed changes
+
 
 import bootsample.model.Phone;
 import bootsample.model.User;
@@ -71,7 +69,7 @@ public class PhoneRESTController {
 			model.addAttribute("address", phone.getAddress());
 			model.addAttribute("user",userService.findUserbyPhone(id));
 			model.addAttribute("NotAssigned",userService.findUserNotAssigned(id));
-			return new ModelAndView("getUser", model);
+			return new ModelAndView("getPhone", model);
 		}
 		}
 	}
@@ -96,17 +94,18 @@ public class PhoneRESTController {
 	 */
 	
 	@PostMapping("/phone/{phoneId}")
-	public String updatePhone(@PathVariable(value="phoneId") int phoneId,
+	public void updatePhone(HttpServletResponse response, @PathVariable(value="phoneId") int phoneId,
 			@RequestParam(value="phone",required=false) String phone,
 			@RequestParam(value="desc",required=false) String desc,
 			@RequestParam(value="street",required=false) String street,
 			@RequestParam(value="city",required=false) String city,
 			@RequestParam(value="state",required=false) String state,
 			@RequestParam(value="zip",required=false) String zip,
-			@RequestParam(value="userId",required=false) String userId)
+			@RequestParam(value="userId",required=false) String userId) throws IOException
 	{
-		phoneservice.updatePhone(phoneId,phone,desc,street,city,state,zip,userId);
-		return "Phone Updated";
+		Phone updatedPhone = phoneservice.updatePhone(phoneId,phone,desc,street,city,state,zip,userId);
+		//return "Phone Updated";
+		response.sendRedirect("/phone/" + updatedPhone.getPhone_id());
 	}
 
 	/*

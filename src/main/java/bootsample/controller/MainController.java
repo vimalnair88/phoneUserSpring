@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,10 @@ public class MainController {
 	
 	@GetMapping("/user/getUserId")
 	public @ResponseBody ModelAndView getUserId(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		return new ModelAndView("getUserId");
+		ModelMap model = new ModelMap();
+		model.addAttribute("user", true);
+		model.addAttribute("phone", false);
+		return new ModelAndView("getUserId", model);
 	}
 	
 	@PostMapping("/user/getUserId")
@@ -48,6 +52,21 @@ public class MainController {
 		String ids = (String)request.getParameter("userId");
 		int id = Integer.parseInt(ids);
 		response.sendRedirect("/user/"+id);
+	}
+	
+	@GetMapping("/phone/getPhoneId")
+	public @ResponseBody ModelAndView getPhoneId(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		ModelMap model = new ModelMap();
+		model.addAttribute("user", false);
+		model.addAttribute("phone", true);
+		return new ModelAndView("getUserId", model);
+	}
+	
+	@PostMapping("/phone/getPhoneId")
+	public @ResponseBody void postPhoneId(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		String ids = (String)request.getParameter("userId");
+		int id = Integer.parseInt(ids);
+		response.sendRedirect("/phone/"+id);
 	}
 	
 	/*

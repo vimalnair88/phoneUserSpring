@@ -12,7 +12,7 @@
     <meta http-equiv="Cache-Control" content="no-cache"> 
     <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
     
-    <title>Group 2: User</title>
+    <title>Group2: GetUser</title>
     
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -31,15 +31,15 @@
 					<li><a href="/" style="color:black">Home</a></li>
 					<li><a href="/user/userId" style="color:black">Create User</a></li>
 					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
-					<li><a href="phone" style="color:black">Create Phone</a></li>
-					<li><a href="phone/getPhoneId" style="color:black">Get Phone</a></li>
+					<li><a href="/phone" style="color:black">Create Phone</a></li>
+					<li><a href="/phone/getPhoneId" style="color:black">Get Phone</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
 	<div>
-	<%int i=0; %>
+		<%int i=0; %>
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
 			<form method="post" action="${user.getId()}">
