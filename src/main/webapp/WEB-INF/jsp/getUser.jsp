@@ -71,13 +71,13 @@
 				City: <input type="text" name="city" value="${user.getAddress().getCity()}"/><br/><br/>
 				State: <input type="text" name="state" value="${user.getAddress().getState()}"/><br/><br/>
 				Zip: <input type="text" name="zip" value="${user.getAddress().getZip()}"/><br/><br/>
-				<b>Phone Numbers Assigned:</b><br/><br/>
-				<!--<c:forEach items="${phones}" var="phone">
-				<%i++;%>
-				Phone <%=i%>: <input type="text" name="phone" value="<c:out value="${phone.getPhoneNumber()}"/>" readonly/><br/><br/>
-				Description <%=i%>: <input type="text" name="desc" value="<c:out value="${phone.getDesc()}"/>" readonly/><br/><br/>
-				</c:forEach>-->
-				<table>
+				<input class="btn btn-primary" type="submit" value="Update"/><br/><br/>
+			</form>
+			<form method="post" action="/user/delete/${user.getId()}">
+				<input class="btn btn-primary" type="submit" value="Delete"/><br/><br/>
+			</form>
+			<b>Phone Numbers Assigned:</b><br/><br/>
+			<table>
 					<tr>
 						<th>Phone Number</th>
 						<th>Description</th>
@@ -89,11 +89,6 @@
 					</tr>
 					</c:forEach>
 				</table>
-				<input class="btn btn-primary" type="submit" value="Update"/><br/><br/>
-			</form>
-			<form method="post" action="/user/delete/${user.getId()}">
-				<input class="btn btn-primary" type="submit" value="Delete"/><br/>
-			</form>
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
