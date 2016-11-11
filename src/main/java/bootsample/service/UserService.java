@@ -37,7 +37,13 @@ public class UserService {
 		
 		User user = userRepository.findOne(user_id);
 		Phone phone = phoneService.getPhone(phone_id);
-		user.getPhones().add(phone);
+		if(user.getPhones()==null){
+			Set<Phone> phones = new HashSet<Phone>();
+			user.setPhones(phones);
+		}else{
+			user.getPhones().add(phone);
+		}
+		
 		userRepository.save(user);
 	}
 	public void removeUsertoPhone(int user_id,int phone_id){
