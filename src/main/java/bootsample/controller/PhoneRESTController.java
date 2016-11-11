@@ -51,7 +51,12 @@ public class PhoneRESTController {
 			String message = "Sorry, the requested phone with ID "+id+" does not exist";
 			model.addAttribute("error",message);
 			model.addAttribute("code", "404 Not Found");
-			ModelAndView modelAndView = new ModelAndView("notFound",model);
+			ModelAndView modelAndView;
+			if(!(json==null)){
+				modelAndView = new ModelAndView(new MappingJackson2JsonView(),model);
+			}else{
+				modelAndView = new ModelAndView("notFound",model);	
+			}
 			return modelAndView;
 		}else{
 			if(!(json==null)){

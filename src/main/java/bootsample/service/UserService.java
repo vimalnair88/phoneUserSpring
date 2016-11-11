@@ -59,15 +59,15 @@ public class UserService {
 	{	
 		Address address = new Address(street,city,state,zip);
 		addressService.saveAddress(address);
-		User user = new User(fname,lname,title,address);	
+		User user = new User(fname,lname,title,address);
+		Set<Phone> phones = new HashSet<>();
+		if(!(no1.isEmpty())){
 		long phoneNumber = Long.parseLong(no1); 
 		Phone phone1 = new Phone(phoneNumber,desc1,address);
 		phoneService.save(phone1);
-		userRepository.save(user);
-		
-		Set<Phone> phones = new HashSet<>();
+		userRepository.save(user);		
 		phones.add(phone1);
-		
+		}
 		// If Second Number Exists
 		
 		if(!(no2.isEmpty())){

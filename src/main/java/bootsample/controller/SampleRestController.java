@@ -51,7 +51,12 @@ public class SampleRestController {
 			String message = "Sorry, the requested user with ID "+id+" does not exist";
 			model.addAttribute("error",message);
 			model.addAttribute("code", "404 Not Found");
-			ModelAndView modelAndView = new ModelAndView("notFound",model);
+			ModelAndView modelAndView;
+			if(!(json==null)){
+				modelAndView = new ModelAndView(new MappingJackson2JsonView(),model);
+			}else{
+				modelAndView = new ModelAndView("notFound",model);	
+			}			
 			return modelAndView;
 		}
 		else{
@@ -99,16 +104,23 @@ public class SampleRestController {
 	 */
 	
 	@DeleteMapping("/user/{userID}")
-	public String deleteUser(@PathVariable(value="userID") int id ){		
+	public String deleteUser(HttpServletResponse response,@PathVariable(value="userID") int id ){		
+		User user = userService.getUser(id);
+		if(user==null){
+			response.setStatus(404,"Resource Not Found");
+		}else
 		userService.delete(id);
 		return "Delete Successful";
 	}
 	
 	@PostMapping("/user/delete/{userID}")
 	public void deletePostUser(HttpServletResponse response, @PathVariable(value="userID") int id ) throws IOException{		
-		//ModelMap model = new ModelMap();
+		User user = userService.getUser(id);
+		if(user==null){
+			response.setStatus(404,"Resource Not Found");
+		}else{
 		userService.delete(id);
 		response.sendRedirect("/user/userId");
-		//return new ModelAndView("createPhone",model);
+		}
 	}
 }
