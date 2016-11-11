@@ -42,14 +42,15 @@
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
 			<form method="post" action="/user/userId">
-				First Name: <input type="text" name="fname" pattern="{A-Za-z}{30}"/><br/><br/>
-				Last Name: <input type="text" name="lname" pattern="{A-Za-z}{30}" /><br/><br/>
-				Title/MI: <input type="text" name="title"  pattern="{A-Za-z}{4}"/><br/><br/>
+				User Id: <input type="text" name="ID" readonly /><br/><br/>
+				First Name: <input type="text" name="fname" pattern="{A-Za-z}{30}" required/><br/><br/>
+				Last Name: <input type="text" name="lname" pattern="{A-Za-z}{30}" required/><br/><br/>
+				Title/MI: <input type="text" name="title"  pattern="{A-Za-z}{4}" required/><br/><br/>
 				<b>Address:</b><br/><br/>
-				Street: <input type="text" name="street" /><br/><br/>
-				City: <input type="text" name="city"  pattern="{A-Za-z}{30}"/><br/><br/>
-				State: <input type="text" name="state" pattern="{A-Za-z}{15}"/><br/><br/>
-				Zip: <input type="number" name="zip" pattern="{10}" /><br/><br/>
+				Street: <input type="text" name="street" required/><br/><br/>
+				City: <input type="text" name="city"  pattern="{A-Za-z}{30}" required/><br/><br/>
+				State: <input type="text" name="state" pattern="{A-Za-z}{15}" required/><br/><br/>
+				Zip: <input type="number" name="zip" pattern="{10}" required/><br/><br/>
 				<b>Phone Numbers Assigned:</b><br/><br/>
 				Phone-1 : <input type="number" name="phoneno1" pattern="{10}"/><br/><br/>
 				Description-1 : 

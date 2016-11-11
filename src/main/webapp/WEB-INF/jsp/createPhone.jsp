@@ -42,23 +42,24 @@
 		<div class="col-sm-3"></div>
 		<div class="container col-sm-6" style="text-align:center">
 			<form method="post" action="/phone/phoneId">
-				Phone Number: <input type="text" name="phone" /><br/><br/>
+				Phone Id: <input type="text" name="ID" readonly /><br/><br/>
+				Phone Number: <input type="text" name="phone" required/><br/><br/>
 				Description: 
-				<select name="desc">
+				<select name="desc" required>
 					<option value="Primary" selected>Primary</option>
 					<option value="Home">Home</option>
 					<option value="Office">Office</option>
 				</select>
 				<br/><br/>
 				<b>Address:</b><br/><br/>
-				Street: <input type="text" name="street" /><br/><br/>
-				City: <input type="text" name="city" /><br/><br/>
-				State: <input type="text" name="state"/><br/><br/>
-				Zip: <input type="text" name="zip" /><br/><br/>
+				Street: <input type="text" name="street" required/><br/><br/>
+				City: <input type="text" name="city" required/><br/><br/>
+				State: <input type="text" name="state" required/><br/><br/>
+				Zip: <input type="text" name="zip" required/><br/><br/>
 				<b>Assign User:</b><br/><br/>
-				First Name: <input type="text" name="firstName"/><br/><br/>
-				Last Name: <input type="text" name="lastName"/><br/><br/>
-				User Id: <input type="number" name="userId"/><br/><br/>
+				First Name: <input type="text" name="firstName" required/><br/><br/>
+				Last Name: <input type="text" name="lastName" required/><br/><br/>
+				User Id: <input type="number" name="userId" required/><br/><br/>
 				<input class="btn btn-primary" type="submit" value="Create" />
 			</form>
 		</div>

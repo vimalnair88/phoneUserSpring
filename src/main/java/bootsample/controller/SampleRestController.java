@@ -50,6 +50,7 @@ public class SampleRestController {
 			ModelMap model = new ModelMap();
 			String message = "Sorry, the requested user with ID "+id+" does not exist";
 			model.addAttribute("error",message);
+			model.addAttribute("code", "404 Not Found");
 			ModelAndView modelAndView = new ModelAndView("notFound",model);
 			return modelAndView;
 		}

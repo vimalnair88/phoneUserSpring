@@ -22,23 +22,23 @@
 		<script src="static/js/respond.min.js"></script>
 	<![endif]-->
 	<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
+		table {
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+		
+		th, td {
+		    text-align: left;
+		    padding: 8px;
+		}
+		
+		tr:nth-child(even){background-color: #f2f2f2}
+		
+		th {
+		    background-color: #4CAF50;
+		    color: white;
+		}
+	</style>
 </head>
 <body>
 
@@ -88,12 +88,14 @@ th {
 			    <th>Operation</th>
 			  </tr>
 			  <c:forEach items="${user}" var="usr">
-			  <tr>
-			    <td>${usr.getId()}</td>
-			    <td>${usr.getFirstname()}</td>
-			    <td>${usr.getLastname()}</td>
-			    <td> <button>Remove</button></td>
-			  </tr>
+			  <form method="post" action="/phone/deleteUser/${phone.getPhone_id()}/${usr.getId()}">
+				  <tr>
+				    <td>${usr.getId()}</td>
+				    <td>${usr.getFirstname()}</td>
+				    <td>${usr.getLastname()}</td>
+				    <td> <input type="submit" value="Remove" /></td>
+				  </tr>
+			  </form>
 			  </c:forEach> 
 			</table>
 			<br/>
@@ -113,12 +115,14 @@ th {
 			    <th>Operation</th>
 			  </tr>
 			<c:forEach items="${NotAssigned}" var="usr">
+			<form method="post" action="/phone/addUser/${phone.getPhone_id()}/${usr.getId()}">
 			  <tr>
 			    <td>${usr.getId()}</td>
 			    <td>${usr.getFirstname()}</td>
 			    <td>${usr.getLastname()}</td>
 			    <td> <button>Add</button></td>
 			  </tr>
+			 </form> 
 			</c:forEach>
   			</table>
   		</div>	

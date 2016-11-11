@@ -80,8 +80,8 @@ public class MainController {
 			@RequestParam(value="city",required=true) String city,
 			@RequestParam(value="state",required=true) String state,
 			@RequestParam(value="zip",required=true) long zip,
-			@RequestParam(value="phoneno1",required=true) String no1,
-			@RequestParam(value="desc1",required=true) String desc1,
+			@RequestParam(value="phoneno1",required=false) String no1,
+			@RequestParam(value="desc1",required=false) String desc1,
 			@RequestParam(value="phoneno2",required=false) String no2,
 			@RequestParam(value="desc2",required=false) String desc2,
 			@RequestParam(value="phoneno3",required=false) String no3,
@@ -89,7 +89,6 @@ public class MainController {
 			) throws IOException
 	{
 		User user = userService.createUser(fname,lname,title,street,city,state,zip,no1,desc1,no2,desc2,no3,desc3);
-		//return "Task Saved";
 		response.sendRedirect("/user/"+user.getId());
 	}
 	

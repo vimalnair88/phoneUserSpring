@@ -50,6 +50,7 @@ public class PhoneRESTController {
 			ModelMap model = new ModelMap();
 			String message = "Sorry, the requested phone with ID "+id+" does not exist";
 			model.addAttribute("error",message);
+			model.addAttribute("code", "404 Not Found");
 			ModelAndView modelAndView = new ModelAndView("notFound",model);
 			return modelAndView;
 		}else{
@@ -129,25 +130,24 @@ public class PhoneRESTController {
 		String message;
 		if(status.equals("Delete Successfull")){
 			message = "Delete Successfull";
-			model.addAttribute("error",message);
-			ResponseEntity.ok("Delete Successfull");			
+			model.addAttribute("error",message);			
 			return new ModelAndView("createPhone",model);
 		}else{
 			message = "Users Exit, Delete Unsuccessfull!";
 			model.addAttribute("error",message);
-			ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Users Exist, Delete UnSuccessfull!");
+			model.addAttribute("code","400 Bad Request");
 			return new ModelAndView("notFound",model);
 		}		
 	}
-	@PostMapping("phone/addUser")
-	public void addUsertoPhone(HttpServletResponse response,@RequestParam(value="id",required=true) int id,
-	@RequestParam(value="phone_id",required=true) int phone_id) throws IOException{
+	@PostMapping("phone/addUser/{phone_id}/{id}")
+	public void addUsertoPhone(HttpServletResponse response,@PathVariable(value="id") int id,
+	@PathVariable(value="phone_id") int phone_id) throws IOException{
 		userService.addUsertoPhone(id, phone_id);
 		response.sendRedirect("/phone/" +phone_id );
 	}
-	@PostMapping("phone/deleteUser")
-	public void removeUsertoPhone(HttpServletResponse response,@RequestParam(value="id",required=true) int id,
-	@RequestParam(value="phone_id",required=true) int phone_id) throws IOException{
+	@PostMapping("phone/deleteUser/{phone_id}/{id}")
+	public void removeUsertoPhone(HttpServletResponse response,@PathVariable(value="id") int id,
+	@PathVariable(value="phone_id") int phone_id) throws IOException{
 		userService.removeUsertoPhone(id, phone_id);
 		response.sendRedirect("/phone/" +phone_id );
 	}

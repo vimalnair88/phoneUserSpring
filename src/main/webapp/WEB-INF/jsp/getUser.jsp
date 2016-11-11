@@ -22,6 +22,24 @@
 		<script src="static/js/html5shiv.min.js"></script>
 		<script src="static/js/respond.min.js"></script>
 	<![endif]-->
+	<style>
+		table {
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+		
+		th, td {
+		    text-align: left;
+		    padding: 8px;
+		}
+		
+		tr:nth-child(even){background-color: #f2f2f2}
+		
+		th {
+		    background-color: #4CAF50;
+		    color: white;
+		}
+	</style>
 </head>
 <body>
 	<div role="navigation">
@@ -54,11 +72,23 @@
 				State: <input type="text" name="state" value="${user.getAddress().getState()}"/><br/><br/>
 				Zip: <input type="text" name="zip" value="${user.getAddress().getZip()}"/><br/><br/>
 				<b>Phone Numbers Assigned:</b><br/><br/>
-				<c:forEach items="${phones}" var="phone">
+				<!--<c:forEach items="${phones}" var="phone">
 				<%i++;%>
 				Phone <%=i%>: <input type="text" name="phone" value="<c:out value="${phone.getPhoneNumber()}"/>" readonly/><br/><br/>
 				Description <%=i%>: <input type="text" name="desc" value="<c:out value="${phone.getDesc()}"/>" readonly/><br/><br/>
-				</c:forEach>
+				</c:forEach>-->
+				<table>
+					<tr>
+						<th>Phone Number</th>
+						<th>Description</th>
+					</tr>
+					<c:forEach items="${phones}" var="phone">
+					<tr>
+						<td>${phone.getPhoneNumber()}</td>
+						<td>${phone.getDesc()}</td>
+					</tr>
+					</c:forEach>
+				</table>
 				<input class="btn btn-primary" type="submit" value="Update"/><br/><br/>
 			</form>
 			<form method="post" action="/user/delete/${user.getId()}">
