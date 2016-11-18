@@ -11,7 +11,7 @@
     <meta http-equiv="Cache-Control" content="no-cache"> 
     <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
     
-    <title>Group2: CreateUser</title>
+    <title>Group6: CreateUser</title>
     
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -25,22 +25,21 @@
 <body>
 
 	<div role="navigation">
-		<div class="navbar navbar-default" style="background-color:#42f48f">
+		<div class="navbar navbar-default" style="background-color:#5784cc">
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/" style="color:black">Home</a></li>
-					<li><a href="/user/userId" style="color:black">Create User</a></li>
-					<li><a href="/user/getUserId" style="color:black">Get User</a></li>
-					<li><a href="/phone" style="color:black">Create Phone</a></li>
-					<li><a href="/phone/getPhoneId" style="color:black">Get Phone</a></li>
+					<li><a href="/" style="color:white">Home</a></li>
+					<li><a href="/user/userId" style="color:white">Create User</a></li>
+					<li><a href="/user/getUserId" style="color:white">Get User</a></li>
+					<li><a href="/phone" style="color:white">Create Phone</a></li>
+					<li><a href="/phone/getPhoneId" style="color:white">Get Phone</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	
 	<div>
-		<div class="col-sm-3"></div>
-		<div class="container col-sm-6" style="text-align:center">
+		<div class="container col-sm-6" style="text-align:right">
 			<form method="post" action="/user/userId">
 				User Id: <input type="text" name="ID" readonly /><br/><br/>
 				First Name: <input type="text" name="fname" pattern="{A-Za-z}{30}" required/><br/><br/>
@@ -81,7 +80,6 @@
 				<input class="btn btn-primary" type="submit" value="Create" /><br/>
 			</form>
 		</div>
-		<div class="col-sm-3"></div>
 	</div>
 
 	
